@@ -4,7 +4,7 @@ class MovableObject {
     img;
     height = 150;
     width = 100;
-
+    speed = 0.15;
     imageCache = [];
 
 
@@ -33,7 +33,8 @@ class MovableObject {
     }
 
     moveLeft(){
-        console.log("Chicken move Left");
+        setInterval(() => {
+            this.x -= 0.3;
+        }, this.speed);
     }
-
 }

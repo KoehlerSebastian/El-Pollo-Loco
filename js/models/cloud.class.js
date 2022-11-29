@@ -15,9 +15,7 @@ width = 300
 
 
     animate() {
-        setInterval(() => {
-            this.x -= 0.3;
-        }, 1000/60);
+        this.moveLeft();
     }
 
 }
