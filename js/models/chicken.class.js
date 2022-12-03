@@ -18,23 +18,19 @@ currentImage = 0;
 
         this.speed = 0.50 + Math.random() * 5.55;
 
-        this.animate();
+        this.animate(this.IMAGES_WALKING);
     }
 
 
 
 
 
-    animate(){
+    animate(IMAGES){
         this.moveLeft();
         setInterval(() =>{
-            let i = this.currentImage % this.IMAGES_WALKING.length
-            let path = this.IMAGES_WALKING[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
+this.playAnimation(IMAGES);
         },200);
 
     }
-
 
 }
