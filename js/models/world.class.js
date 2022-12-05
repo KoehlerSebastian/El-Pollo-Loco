@@ -56,6 +56,7 @@ class World {
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
 
+
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -71,7 +72,7 @@ class World {
         mo.x = mo.x * -1;
     }
 
-    flipImageBack(mo){
+    flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
