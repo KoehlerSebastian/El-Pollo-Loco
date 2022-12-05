@@ -5,7 +5,7 @@ class World {
     canvas;
     ctx;
     keyboard;
-    camera_x =  -100;
+    camera_x = -100;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext("2d");
@@ -16,7 +16,7 @@ class World {
     }
 
 
-    setWorld(){
+    setWorld() {
         this.character.world = this;
     };
 
@@ -42,29 +42,38 @@ class World {
         });
     }
 
-    addObjectsToMap(objects){
-        objects.forEach(o =>{
+    addObjectsToMap(objects) {
+        objects.forEach(o => {
             this.addToMap(o);
         });
     }
 
     addToMap(mo) {
 
-        if(mo.otherDirection){
-            this.ctx.save();
-            this.ctx.translate(mo.width, 0);
-            this.ctx.scale(-1, 1);
-            mo.x = mo.x*-1;
-        }
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
         if (mo.otherDirection) {
-            mo.x = mo.x * -1;
-            this.ctx.restore();
+            this.flipImage(mo);
+        }
+        mo.draw(this.ctx);
+        mo.drawFrame(this.ctx);
+
+        if (mo.otherDirection) {
+            this.flipImageBack(mo);
         }
 
     }
 
 
+    flipImage(mo) {
+        this.flipImage(mo)
+        this.ctx.save();
+        this.ctx.translate(mo.width, 0);
+        this.ctx.scale(-1, 1);
+        mo.x = mo.x * -1;
+    }
 
+    flipImageBack(mo){
+        mo.x = mo.x * -1;
+        this.ctx.restore();
+    }
 
 }

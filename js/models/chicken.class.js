@@ -16,7 +16,7 @@ currentImage = 0;
         this.loadImages(this.IMAGES_WALKING);
         this.x = 500 + Math.floor(Math.random() * 200);
 
-        this.speed = 0.50 + Math.random() * 5.55;
+        this.speed = 0.1 + Math.random() * 1.55;
 
         this.animate(this.IMAGES_WALKING);
     }
@@ -26,7 +26,13 @@ currentImage = 0;
 
 
     animate(IMAGES){
-        this.moveLeft();
+        setInterval(() => {
+            this.moveLeft();
+        }, 1000/60);
+
+
+
+
         setInterval(() =>{
 this.playAnimation(IMAGES);
         },200);
