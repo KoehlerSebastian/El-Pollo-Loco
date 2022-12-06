@@ -13,6 +13,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollisions();
     }
 
 
@@ -20,7 +21,18 @@ class World {
         this.character.world = this;
     };
 
+    checkCollisions(){
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) =>{
+                if(this.character.isColliding(enemy)){
 
+                    this.character.hit()
+                    console.log("Collision with Character", enemy, "Engergie = ", this.character.energy);
+                }
+        
+            });
+        }, 200);
+    }
 
     draw() {
         // Canvas wird gelöscht
@@ -65,7 +77,6 @@ class World {
 
 
     flipImage(mo) {
-        this.flipImage(mo)
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
         this.ctx.scale(-1, 1);
