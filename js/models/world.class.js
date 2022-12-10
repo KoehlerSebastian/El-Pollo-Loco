@@ -2,7 +2,6 @@ class World {
     character = new Character();
     throwObjects = [];
     level = level1;
-
     canvas;
     ctx;
     keyboard;
@@ -66,6 +65,7 @@ class World {
 
 
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwObjects);
         this.ctx.translate(-this.camera_x, 0);
