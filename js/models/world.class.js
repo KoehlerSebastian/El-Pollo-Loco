@@ -24,29 +24,56 @@ class World {
         this.character.world = this;
     };
 
-    run(){
+    run() {
         setInterval(() => {
-            this.checkCollisions()
-            this.checkThrowObjects()
+            this.checkCollisions();
+            this.checkThrowObjects();
         }, 200);
-    }
+    };
 
-    checkCollisions(){
-        this.level.enemies.forEach((enemy) =>{
-            if(this.character.isColliding(enemy)){
+    checkCollisions() {
+        this.isCollidingChicken();
+        this.isCollidingBottles();
+        this.isCollidingCoins();
+    };
 
+
+
+    isCollidingChicken() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                let i = this.level.enemies.indexOf(enemy);
+                this.level.enemies.splice(i, 1);
                 this.character.hit()
                 this.statusBar.setPercentage(this.character.energy);
                 console.log("Collision with Character", enemy, "Engergie = ", this.character.energy);
             }
-    
         });
     }
 
-    checkThrowObjects(){
-        if(this.keyboard.D){
+
+    isCollidingBottles() {
+        this.level.bottles.forEach((bottles) => {
+            if (this.character.isColliding(bottles) && this.character.bottles <= 4) {
+                let i = this.level.bottles.indexOf(bottles);
+                this.level.bottles.splice(i, 1);
+                this.character.pickUp();
+                this.bottleBar.bottlesLootet(this.character.bottles);
+            };
+        });
+    }
+
+    isCollidingCoins() {
+
+    }
+
+
+    checkThrowObjects() {
+        if (this.keyboard.D && (this.character.bottles > 0)) {
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 60);
             this.throwObjects.push(bottle);
+            this.character.bottles -=1;
+            this.bottleBar.bottlesLootet(this.character.bottles);
         }
     }
 
@@ -88,6 +115,9 @@ class World {
             this.addToMap(o);
         });
     }
+
+
+
 
     addToMap(mo) {
 

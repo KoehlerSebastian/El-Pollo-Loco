@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     offsetY = 0;
     energy = 100;
     lastHit = 0;
+    bottles = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -46,6 +47,16 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
+
+    pickUp(){
+        if (this.bottles <= 4){
+        this.bottles += 1;
+        console.log(this.bottles);
+        }else{
+            console.log("full");
+        }
+    }
+    
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;

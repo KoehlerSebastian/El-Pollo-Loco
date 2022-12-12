@@ -1,4 +1,4 @@
-class BottleBar extends StatusBar{
+class BottleBar extends DrawableObject  {
 
 
     IMAGES_BOTTLE_BAR = [
@@ -10,13 +10,45 @@ class BottleBar extends StatusBar{
         "./img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png",
     ]
 
-    constructor(){
+    bottlesInBag = 0;
+
+    constructor() {
         super();
         this.loadImages(this.IMAGES_BOTTLE_BAR);
         this.x = 250;
         this.y = 0;
         this.width = 200;
         this.height = 60;
-        this.setPercentage(100, this.IMAGES_BOTTLE_BAR);
+        this.bottlesLootet(0)
+    }
+
+
+
+    bottlesLootet(bottlesInBag) {
+        this.bottlesInBag = bottlesInBag
+        let path = this.IMAGES_BOTTLE_BAR[this.resolveImageIndexBottles()];
+        this.img = this.imageCache[path];
+    }
+
+    resolveImageIndexBottles() {
+        if (this.bottlesInBag == 0) {
+            return 0;
+        }
+        else if (this.bottlesInBag == 1) {
+            return 1;
+        }
+        else if (this.bottlesInBag == 2) {
+            return 2;
+        }
+        else if (this.bottlesInBag == 3) {
+            return 3;
+        }
+        else if (this.bottlesInBag == 4) {
+            return 4;
+        }
+        else if (this.bottlesInBag == 5) {
+            return 5;
+        }
     }
 }
+
