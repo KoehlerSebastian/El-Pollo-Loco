@@ -28,6 +28,18 @@ class DrawableObject{
         ctx.stroke();
     }
     }
+    drawFrameChickenTop(ctx){
+        if(this instanceof Chicken){
+            ctx.beginPath();
+            ctx.lineWidth = "5";
+            ctx.strokeSytle = "yellow";
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+    }
+
+
+    
 
     loadImages(arr){
         arr.forEach((path) => {

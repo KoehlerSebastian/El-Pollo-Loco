@@ -4,7 +4,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 1;
-    offsetY = 0;
+    // offsetY = 0;
     energy = 100;
     lastHit = 0;
     bottles = 0;
@@ -32,11 +32,60 @@ class MovableObject extends DrawableObject {
 
 
 
-    isColliding(obj) {
-        return (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) &&
-            (this.y + this.offsetY + this.height) >= obj.y &&
-            (this.y + this.offsetY) <= (obj.y + obj.height);
-    }
+    // isColliding(obj) {
+    //     // return (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) &&
+    //     //     (this.y + this.offsetY + this.height) >= obj.y &&
+    //     //     (this.y + this.offsetY) <= (obj.y + obj.height);
+    //     return (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && (this.y )
+    // }
+
+    isColliding(object) {
+        return this.rightBorder() > this.leftObjectBorder(object) &&
+               this.bottomBorder() > this.topObjectBorder(object) &&
+               this.leftBorder() < this.rightObjectBorder(object) &&
+               this.topBorder() < this.bottomObjectBorder(object);
+       }
+
+       
+   
+       rightBorder() {
+           return this.x + this.width - this.offset.right;
+       }
+   
+   
+       leftBorder() {
+           return this.x + this.offset.left;
+       }
+   
+   
+       topBorder() {
+           return this.y + this.offset.top;
+       }
+   
+   
+       bottomBorder() {
+           return this.y + this.height - this.offset.bottom;
+       }
+   
+   
+       rightObjectBorder(object) {
+           return object.x + object.width - object.offset.right;
+       }
+   
+   
+       leftObjectBorder(object) {
+           return object.x + object.offset.left;
+       }
+   
+   
+       topObjectBorder(object) {
+           return object.y + object.offset.top;
+       }
+   
+   
+       bottomObjectBorder(object) {
+           return object.y + object.height - object.offset.bottom;
+       }
 
     hit() {
         this.energy -= 5;
@@ -47,6 +96,20 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
+
+
+
+    CheckJumpOnEnemy(){
+
+    }
+
+    canJumpOnEnemy(enemy){
+        return this.character.isColliding(enemy) &&
+        this.character.isAboveGround();
+    }
+
+
+   
 
     pickUp(){
         if (this.bottles <= 4){

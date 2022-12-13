@@ -28,7 +28,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 200);
+        }, 50);
     };
 
     checkCollisions() {
@@ -41,13 +41,18 @@ class World {
 
     isCollidingChicken() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
                 let i = this.level.enemies.indexOf(enemy);
-                this.level.enemies.splice(i, 1);
+                // this.level.enemies.splice(i, 1);
                 this.character.hit()
                 this.statusBar.setPercentage(this.character.energy);
                 console.log("Collision with Character", enemy, "Engergie = ", this.character.energy);
+            }else if(this.character.isColliding(enemy) && this.character.isAboveGround()){
+                let i = this.level.enemies.indexOf(enemy);
+               console.log("TOT")
+               this.level.enemies.splice(i, 1);
             }
+            
         });
     }
 
@@ -126,6 +131,7 @@ class World {
         }
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+        mo.drawFrameChickenTop(this.ctx);
 
 
         if (mo.otherDirection) {
@@ -146,5 +152,24 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
+
+    CheckJumpOnEnemy(){
+    this.level.enemies.forEach(chicken => {
+        if(this.canJumpOnEnemy(chicken)){
+            console.log("CHICKEN TOT");
+
+        }
+    });
+    }
+
+    canJumpOnEnemy(enemy){
+        return this.character.isColliding(enemy) &&
+        this.character.isAboveGround();
+    }
+
+
+
+
 
 }
