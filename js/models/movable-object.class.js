@@ -4,7 +4,6 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 1;
-    // offsetY = 0;
     energy = 100;
     lastHit = 0;
     bottles = 0;
@@ -28,16 +27,6 @@ class MovableObject extends DrawableObject {
         }
     }
 
-
-
-
-
-    // isColliding(obj) {
-    //     // return (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) &&
-    //     //     (this.y + this.offsetY + this.height) >= obj.y &&
-    //     //     (this.y + this.offsetY) <= (obj.y + obj.height);
-    //     return (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && (this.y )
-    // }
 
     isColliding(object) {
         return this.rightBorder() > this.leftObjectBorder(object) &&
@@ -97,16 +86,14 @@ class MovableObject extends DrawableObject {
         }
     }
 
+ 
 
 
-    CheckJumpOnEnemy(){
 
-    }
-
-    canJumpOnEnemy(enemy){
-        return this.character.isColliding(enemy) &&
-        this.character.isAboveGround();
-    }
+    // canJumpOnEnemy(enemy){
+    //     return this.character.isColliding(enemy) &&
+    //     this.character.isAboveGround();
+    // }
 
 
    

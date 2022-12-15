@@ -1,6 +1,8 @@
 class World {
     character = new Character();
     throwObjects = [];
+    thrownObjects = [];
+    deadChicken = [];
     level = level1;
     canvas;
     ctx;
@@ -28,6 +30,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
+            this.checkThrownObjectHitGround();
         }, 50);
     };
 
@@ -35,6 +38,7 @@ class World {
         this.isCollidingChicken();
         this.isCollidingBottles();
         this.isCollidingCoins();
+        this.checkThrownObjectHitEnemy();
     };
 
 
@@ -42,19 +46,24 @@ class World {
     isCollidingChicken() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
-                let i = this.level.enemies.indexOf(enemy);
-                // this.level.enemies.splice(i, 1);
                 this.character.hit()
                 this.statusBar.setPercentage(this.character.energy);
-                console.log("Collision with Character", enemy, "Engergie = ", this.character.energy);
             }else if(this.character.isColliding(enemy) && this.character.isAboveGround()){
-                let i = this.level.enemies.indexOf(enemy);
-               console.log("TOT")
-               this.level.enemies.splice(i, 1);
-            }
-            
+                this.deadEnemy(enemy);
+            }     
         });
     }
+
+
+
+    
+    deadEnemy(enemy){
+        let i = this.level.enemies.indexOf(enemy);
+        let deadEnemyChicken = new DeadChicken(enemy.x, enemy.y);
+        this.level.enemies.splice(i, 1);
+        this.deadChicken.push(deadEnemyChicken);
+    }
+
 
 
     isCollidingBottles() {
@@ -73,6 +82,7 @@ class World {
     }
 
 
+
     checkThrowObjects() {
         if (this.keyboard.D && (this.character.bottles > 0)) {
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 60);
@@ -81,6 +91,42 @@ class World {
             this.bottleBar.bottlesLootet(this.character.bottles);
         }
     }
+
+
+    checkThrownObjectHitEnemy(){
+        this.throwObjects.forEach((bottle) => {
+            this.level.enemies.forEach((enemy) => {
+                // let indexOfEnemy = this.level.enemies.indexOf(enemy); 
+                if (bottle.isColliding(enemy)) {
+                    this.bottleSplashed(bottle);
+                }
+            })
+        });
+    }
+
+    checkThrownObjectHitGround(){
+        this.thrownObjects.forEach((bottle) =>{
+            if(!bottle.isAboveGround()){
+                this.bottleSplashed(bottle);
+            }
+        })
+    }
+
+
+    bottleSplashed(bottle){
+        let bottleSplashed = new BottleSplash(bottle.x, bottle.y);
+        this.thrownObjects.push(bottleSplashed);
+        this.throwObjects = [];
+        //sound einfügen
+        setTimeout(() => this.thrownObjects.splice(bottleSplashed), 500);
+    }
+
+
+
+
+
+
+
 
     draw() {
         // Canvas wird gelöscht
@@ -104,6 +150,9 @@ class World {
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwObjects);
+        this.addObjectsToMap(this.thrownObjects);
+        this.addObjectsToMap(this.level.endboss);
+        this.addObjectsToMap(this.deadChicken);
         this.ctx.translate(-this.camera_x, 0);
 
 
@@ -152,24 +201,6 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
-
-
-    CheckJumpOnEnemy(){
-    this.level.enemies.forEach(chicken => {
-        if(this.canJumpOnEnemy(chicken)){
-            console.log("CHICKEN TOT");
-
-        }
-    });
-    }
-
-    canJumpOnEnemy(enemy){
-        return this.character.isColliding(enemy) &&
-        this.character.isAboveGround();
-    }
-
-
-
 
 
 }

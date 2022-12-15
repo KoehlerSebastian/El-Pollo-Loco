@@ -1,6 +1,13 @@
 class ThrowableObject extends MovableObject {
     throwSpeedX = 20;
 
+    offset = {
+        top: 20,
+        bottom: 30,
+        left: 20,
+        right: 20
+    }
+
 
     IMAGE_BOTTLES = [
         "./img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png",
@@ -8,6 +15,7 @@ class ThrowableObject extends MovableObject {
         "./img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png",
         "./img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png"
     ]
+
 
     currentImage = 0;
 
@@ -19,7 +27,6 @@ class ThrowableObject extends MovableObject {
         this.height = 75;
         this.width = 60;
         this.throw();
-
     }
 
 
@@ -36,5 +43,6 @@ class ThrowableObject extends MovableObject {
         }, 1000/10);
 
     }
+
 
 }
