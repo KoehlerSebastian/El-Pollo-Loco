@@ -1,6 +1,6 @@
 class Chicken extends MovableObject{
-    width = 50;
-    height = 35;
+    width = 80;
+    height = 55;
     x;
 
     offset = {
@@ -22,7 +22,7 @@ currentImage = 0;
     constructor(){
         super().loadImage("./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 500 + Math.floor(Math.random() * 200);
+        this.x = 1000 + Math.floor(Math.random() * 1000);
 
         this.speed = 0.1 + Math.random() * 1.55;
 

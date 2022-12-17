@@ -1,5 +1,8 @@
 class Endboss extends MovableObject {
 
+    energy = 150;
+
+
     offset = {
         top: 20,
         bottom: 30,

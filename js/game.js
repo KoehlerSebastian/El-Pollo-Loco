@@ -40,7 +40,9 @@ window.addEventListener("keydown", (event) =>{
     }
 
     if (event.keyCode == 68) {
-        keyboard.D = true;
+            keyboard.D = true;
+
+
     }
 
     window.addEventListener("keyup", (event) =>{
