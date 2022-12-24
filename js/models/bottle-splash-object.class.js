@@ -32,6 +32,8 @@ class BottleSplash extends MovableObject{
 
 
 
+
+
     animate(){
         setInterval(() => {
             this.playAnimation(this.IMAGE_BOTTLES_SPLASH);

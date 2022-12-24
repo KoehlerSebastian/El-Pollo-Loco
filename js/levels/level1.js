@@ -80,5 +80,18 @@ const level1 = new Level(
     ],
     [
         new Endboss()
-    ] 
+    ],
+    [
+        new Coin(200, 200),
+        new Coin(250, 220),
+        new Coin(300, 220),
+        new Coin(200, 250),
+        new Coin(200, 300),
+        new Coin(250, 320),
+        new Coin(300, 300),
+        new Coin(200, 350),
+        new Coin(200, 400),
+        new Coin(250, 400),
+        new Coin(300, 400)
+    ]
 )

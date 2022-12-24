@@ -1,5 +1,7 @@
 class Character extends MovableObject {
     speed = 2;
+    coins = 0;
+    
 
     offset = {
         top: 100,

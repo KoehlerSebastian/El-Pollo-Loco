@@ -20,7 +20,9 @@ class MovableObject extends DrawableObject {
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
-        } else {
+        }    
+
+         else {
 
 
             return this.y <= 270;
@@ -106,6 +108,11 @@ class MovableObject extends DrawableObject {
             console.log("full");
         }
     }
+
+
+    pickUpCoins(){
+        this.coins ++;
+    }
     
 
     isHurt() {
@@ -140,8 +147,27 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     };
 
+    playAnimationHead(IMAGES) {
+        this.IMAGES = IMAGES;
+        let i = this.currentImageHead % IMAGES.length
+        let path = IMAGES[i];
+        this.img = this.imageCache2[path];
+        this.currentImagHead++;
+    };
+
+
     jump() {
         this.speedY = 15;
     }
+
+
+
+
+
+
+
+
+
+
 
 }

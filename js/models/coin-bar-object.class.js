@@ -11,6 +11,8 @@ class CoinBar extends StatusBar{
 
     ]
 
+    coinsInBag = 0;
+
     constructor(){
         super();
         this.loadImages(this.IMAGES_COIN_BAR);
@@ -18,6 +20,39 @@ class CoinBar extends StatusBar{
         this.y = 0;
         this.width = 200;
         this.height = 60;
-        this.setPercentage(100, this.IMAGES_COIN_BAR);
+        this.coinsLootet(0);
     }
+
+
+
+
+    coinsLootet(coinsInBag) {
+        this.coins = coinsInBag
+        let path = this.IMAGES_COIN_BAR[this.resolveImageIndexCoins()];
+        this.img = this.imageCache[path];
+    }
+
+    resolveImageIndexCoins() {
+        if (this.coins == 0) {
+            return 0;
+        }
+        else if (this.coins >= 1) {
+            return 1;
+        }
+        else if (this.coins >= 5) {
+            return 2;
+        }
+        else if (this.coins >= 10) {
+            return 3;
+        }
+        else if (this.coins >= 15) {
+            return 4;
+        }
+        else if (this.coins == 20) {
+            return 5;
+        }
+    }
+
+
+
 }

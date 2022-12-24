@@ -1,5 +1,6 @@
 class ThrowableObject extends MovableObject {
     throwSpeedX = 20;
+    ground = 270;
 
     offset = {
         top: 20,

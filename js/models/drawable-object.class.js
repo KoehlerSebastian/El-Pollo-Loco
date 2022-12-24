@@ -1,6 +1,7 @@
 class DrawableObject{
     img;
     imageCache = [];
+    imageCache2 = [];
     x = 60;
     y = 270;
     height = 150;
@@ -46,6 +47,15 @@ class DrawableObject{
             let img = new Image();
             img.src = path;
             this.imageCache[path] = img;
+        });
+
+    }
+
+    loadImages2(arr){
+        arr.forEach((path) => {
+            let img = new Image();
+            img.src = path;
+            this.imageCache2[path] = img;
         });
 
     }

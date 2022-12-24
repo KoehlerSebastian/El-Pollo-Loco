@@ -8,6 +8,7 @@ class World {
     canvas;
     ctx;
     keyboard;
+    lastThrow = 0;
     camera_x = -100;
     statusBar = new StatusBar();
     bottleBar = new BottleBar();
@@ -46,7 +47,7 @@ class World {
     };
 
 
-
+    
     isCollidingChicken() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
@@ -112,19 +113,33 @@ class World {
     }
 
     isCollidingCoins() {
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                let i = this.level.coins.indexOf(coin);
+                this.level.coins.splice(i, 1);
+                this.character.pickUpCoins();
+                this.coinBar.coinsLootet(this.character.coins);
 
+            }
+        })
     }
 
 
 
     checkThrowObjects() {
-        if (this.keyboard.D && (this.character.bottles > 0)) {
+        if ((this.keyboard.D) && (this.character.bottles > 0) && (!this.checkTimePassed(0.3))) {
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 60);
             this.throwObjects.push(bottle);
             this.character.bottles--;
             this.bottleBar.bottlesLootet(this.character.bottles);
-
+            this.lastThrow = new Date().getTime();
         }
+    }
+
+    checkTimePassed(ms) {
+        let timepassed = new Date().getTime() - this.lastThrow;
+        timepassed = timepassed / 1000; //Difference in s
+        return timepassed < ms;
     }
 
 
@@ -140,8 +155,9 @@ class World {
     }
 
     checkThrownObjectHitGround() {
-        this.thrownObjects.forEach((bottle) => {
+        this.throwObjects.forEach((bottle) => {
             if (!bottle.isAboveGround()) {
+                console.log("hit");
                 this.bottleSplashed(bottle);
             }
         })
@@ -182,7 +198,7 @@ class World {
         this.addObjectsToMap(this.level.smallChicken);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.clouds);
-
+        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.deadChicken);
         this.addObjectsToMap(this.deadSmallChicken);
