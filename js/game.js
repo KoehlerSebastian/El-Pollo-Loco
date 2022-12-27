@@ -5,17 +5,27 @@ let keyboard = new Keyboard();
 
 
 
+
+
+
+
 function init(){
-    canvas = document.getElementById("canvas");
-    world = new World(canvas, keyboard);
+document.getElementById("canvas").classList.add("d-none");
 
 
-    console.log("My Character is", world.character)
-    console.log("My Enemies are", world.enemies);
+//     console.log("My Character is", world.character)
+//     console.log("My Enemies are", world.enemies);
+// }
 }
 
 
+function startGame(){
+    document.getElementById("start-overlay").classList.add("d-none");
+    document.getElementById("canvas").classList.remove("d-none");
 
+    canvas = document.getElementById("canvas");
+    world = new World(canvas, keyboard);
+}
 
 
 window.addEventListener("keydown", (event) =>{

@@ -1,6 +1,4 @@
-
-
-body{
+body {
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -8,9 +6,30 @@ body{
     justify-content: center;
 }
 
+.d-none {
+    display: none!important;
+}
 
 
-
-canvas{
+canvas {
     background-color: black;
 }
+
+.mainpage-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+
+.start-container {
+    width: 720px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    background-image: url("../img/9_intro_outro_screens/start/startscreen_1.png");
+    background-size: 100% 100%;
+
+} 

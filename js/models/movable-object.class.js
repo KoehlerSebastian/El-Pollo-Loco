@@ -89,17 +89,6 @@ class MovableObject extends DrawableObject {
     }
 
  
-
-
-
-    // canJumpOnEnemy(enemy){
-    //     return this.character.isColliding(enemy) &&
-    //     this.character.isAboveGround();
-    // }
-
-
-   
-
     pickUp(){
         if (this.bottles <= 4){
         this.bottles += 1;

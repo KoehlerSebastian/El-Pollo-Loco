@@ -17,6 +17,7 @@
     <script src="./js/models/dead-chicken-object.class.js"></script>
     <script src="./js/models/dead-small-chicken.object.class.js"></script>
     <script src="./js/models/background-object.class.js"></script>
+    <script src="./js/models/gameover.class.js"></script>
     <script src="./js/models/status-bar.class.js"></script>
     <script src="./js/models/botte-bar-object.class.js"></script>
     <script src="./js/models/coin-bar-object.class.js"></script>
@@ -35,6 +36,17 @@
 </head>
 <body onload="init()">
     <h1>EL POLLO LOCO</h1>
-    <canvas id="canvas" width="720" height="480"></canvas>
+    <div class="mainpage-container">
+        <canvas class ="d-none" id="canvas" width="720" height="480"></canvas>
+        <div class="start-container" id="start-overlay">
+            <div class="row">
+                <button onclick="startGame()"class="btn-1">
+                    START
+                </button>
+            </div>
+            
+        </div>
+    </div>
+
 </body>
 </html>

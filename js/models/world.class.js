@@ -4,6 +4,7 @@ class World {
     thrownObjects = [];
     deadChicken = [];
     deadSmallChicken = [];
+    gameOver = new GameOver();
     level = level1;
     canvas;
     ctx;
@@ -63,12 +64,7 @@ class World {
         });
     }
 
-    // deadChicken(enemy){
 
-    //     let deadEnemyChicken = new DeadChicken(enemy.x, enemy.y);
-    //     this.level.enemies.splice(i, 1);
-    //     this.deadChicken.push(deadEnemyChicken);
-    // }
 
     isCollidingSmallChicken() {
         this.level.smallChicken.forEach((smallChicken) => {
@@ -84,22 +80,9 @@ class World {
         });
     }
 
-    // deadSmallChicken(smallChicken){
-    //     let i = this.level.smallChicken.indexOf(smallChicken);
-    //     let deadEnemySmallChicken = new DeadSmallChicken(smallChicken.x, smallChicken.y);
-    //     this.level.smallChicken.splice(i, 1);
-    //     this.deadSmallChicken.push(deadEnemySmallChicken);
-    //     this.deadSmallChicken(smallChicken);
-    // }
 
 
-
-
-
-
-
-
-
+    
 
     isCollidingBottles() {
         this.level.bottles.forEach((bottles) => {
@@ -153,6 +136,8 @@ class World {
             })
         });
     }
+
+
 
     checkThrownObjectHitGround() {
         this.throwObjects.forEach((bottle) => {

@@ -61,7 +61,6 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.applyGravity();
-
         this.animate(this.IMAGES_WALKING);
     }
 
@@ -112,5 +111,14 @@ class Character extends MovableObject {
     jump() {
         this.speedY = 15;
     }
+
+    checkStatusOfCharacter(){
+        setInterval(() => {
+            if(!this.isDead){
+
+            }
+        }, 150);
+
+}
 
 }
