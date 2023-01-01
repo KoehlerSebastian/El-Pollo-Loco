@@ -35,7 +35,7 @@ currentImage = 0;
 
     animate(IMAGES){
         setInterval(() => {
-            this.moveLeft();
+            this.moveLeft(this.speed);
         }, 1000/60);
 
 

@@ -47,7 +47,7 @@ class SmallChicken extends MovableObject {
 
     animate(IMAGES) {
         setInterval(() => {
-            this.moveLeft();
+            this.moveLeft(this.speed);
         }, 1000 / 60);
 
 

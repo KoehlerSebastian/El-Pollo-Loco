@@ -22,6 +22,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.slowIntervalls();
     }
 
 
@@ -36,6 +37,19 @@ class World {
             this.checkThrownObjectHitGround();
         }, 50);
     };
+
+
+    slowIntervalls(){
+        setInterval(() => {
+            this.checkCharacterNearEndboss();
+        }, 250);
+    }
+
+    checkCharacterNearEndboss(){
+        if(this.character.x >= 70){
+            this.level.endboss[0].characterIsNearby = true;
+        }
+    }
 
     checkCollisions() {
         this.isCollidingChicken();
@@ -59,7 +73,7 @@ class World {
                 // this.deadChicken(enemy);
                 let deadEnemyChicken = new DeadChicken(enemy.x, enemy.y);
                 this.level.enemies.splice(i, 1);
-                this.deadChicken.push(deadEnemyChicken);
+                this.deadChicken.push(deadEnemyChicken); 
             }
         });
     }

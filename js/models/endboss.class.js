@@ -1,5 +1,5 @@
 class Endboss extends MovableObject {
-
+    characterIsNearby = false;
     energy = 150;
     offset = {
         top: 20,
@@ -35,7 +35,17 @@ class Endboss extends MovableObject {
         this.x = 600;
         this.animateHead(this.IMAGES_HEAD_CHICKEN);
         this.animateWalk(this.IMAGES_WALKING_ENDBOSS);
+        this.checkCharacterisNearby();
 
+    }
+
+    checkCharacterisNearby(){
+        setInterval(() => {
+            if(this.characterIsNearby){
+                this.moveLeft(1.0);
+
+        }
+        }, 1000/60);
     }
 
     animateHead(ImagesHead){
