@@ -1,6 +1,8 @@
 class Endboss extends MovableObject {
     characterIsNearby = false;
+    endbossEnrage = false;
     energy = 150;
+    speed = 1.0;
     offset = {
         top: 20,
         bottom: 30,
@@ -25,6 +27,13 @@ class Endboss extends MovableObject {
         "./img/4_enemie_boss_chicken/1_walk/G4.png"
     ]
 
+
+    IMAGES_HURT_ENDBOSS = [
+        "./img/4_enemie_boss_chicken/4_hurt/G21.png",
+        "./img/4_enemie_boss_chicken/4_hurt/G22.png",
+        "./img/4_enemie_boss_chicken/4_hurt/G23.png"
+    ]
+
     currentImage = 0;
     currentImageHead = 0;
 
@@ -32,21 +41,42 @@ class Endboss extends MovableObject {
         super().loadImage(this.IMAGES_HEAD_CHICKEN[0]);
         this.loadImages2(this.IMAGES_HEAD_CHICKEN);
         this.loadImages(this.IMAGES_WALKING_ENDBOSS);
+        this.loadImages(this.IMAGES_HURT_ENDBOSS);
         this.x = 600;
         this.animateHead(this.IMAGES_HEAD_CHICKEN);
         this.animateWalk(this.IMAGES_WALKING_ENDBOSS);
         this.checkCharacterisNearby();
-
+        this.checkEndbossEnrage();
+        this.checkCharacterIsHurt();
     }
+
+
 
     checkCharacterisNearby(){
         setInterval(() => {
             if(this.characterIsNearby){
-                this.moveLeft(1.0);
+                this.moveLeft(this.speed);
 
         }
         }, 1000/60);
     }
+
+    checkEndbossEnrage(){
+        setInterval(() => {
+            if(this.energy <= 100){
+                this.speed = 1.5;
+            }
+        }, 250);
+    }
+
+    checkCharacterIsHurt(){
+        setInterval(() => {
+            if(this.isHurt()){
+                this.playAnimation(this.IMAGES_HURT_ENDBOSS);
+            }
+        }, 150);
+    }
+
 
     animateHead(ImagesHead){
         setInterval(() => {

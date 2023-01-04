@@ -78,13 +78,18 @@ class MovableObject extends DrawableObject {
        }
 
     hit() {
-        this.energy -= 5;
+        if(this instanceof Endboss)
+        this.energy -= 150/5;
 
         if (this.energy <= 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
+    }
+
+    bottleHitEnemy(){
+        this.energy -= 25;
     }
 
  

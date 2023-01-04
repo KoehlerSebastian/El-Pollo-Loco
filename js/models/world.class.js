@@ -146,6 +146,7 @@ class World {
                 // let indexOfEnemy = this.level.enemies.indexOf(enemy); 
                 if (bottle.isColliding(enemy)) {
                     this.bottleSplashed(bottle);
+                    enemy.hit();
                 }
             })
         });
