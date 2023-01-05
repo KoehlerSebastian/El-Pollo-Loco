@@ -11,6 +11,7 @@ class World {
     keyboard;
     lastThrow = 0;
     camera_x = -100;
+    endbossLifebar = new EndbossLifebar();
     statusBar = new StatusBar();
     bottleBar = new BottleBar();
     coinBar = new CoinBar();
@@ -187,6 +188,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.bottleBar);
+        this.addToMap(this.endbossLifebar);
         this.addToMap(this.coinBar);
         this.ctx.translate(this.camera_x, 0);
         this.addToMap(this.character);
