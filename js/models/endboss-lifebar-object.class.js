@@ -2,10 +2,15 @@ class EndbossLifebar extends DrawableObject  {
 
 
     IMAGES_ENDBOSS_LIFEBAR = [
-        "./img/7_statusbars/2_statusbar_endboss/green.png"
+        "./img/7_statusbars/1_statusbar/2_statusbar_health/orange/100.png",
+        "./img/7_statusbars/1_statusbar/2_statusbar_health/orange/80.png",
+        "./img/7_statusbars/1_statusbar/2_statusbar_health/orange/60.png",
+        "./img/7_statusbars/1_statusbar/2_statusbar_health/orange/40.png",
+        "./img/7_statusbars/1_statusbar/2_statusbar_health/orange/20.png",
+        "./img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png",
     ]
 
-    bottlesInBag = 0;
+    percentage = 100;
 
     constructor() {
         super().loadImage(this.IMAGES_ENDBOSS_LIFEBAR[0])
@@ -14,29 +19,38 @@ class EndbossLifebar extends DrawableObject  {
         this.y = 100;
         this.width = 200;
         this.height = 60;
+        this.setPercentage(100);
     }
 
 
-//     resolveImageIndexBottles() {
-//         if (this.bottlesInBag == 150) {
-//             return 0;
-//         }
-//         else if (this.energy == 120) {
-//             return 1;
-//         }
-//         else if (this.bottlesInBag == 90) {
-//             return 2;
-//         }
-//         else if (this.bottlesInBag == 60) {
-//             return 3;
-//         }
-//         else if (this.bottlesInBag == 30) {
-//             return 4;
-//         }
-//         else if (this.bottlesInBag == 0) {
-//             return 5;
-//         }
-//     }
-// }
+    
+    setPercentage(percentage) {
+        this.percentage = percentage;
+        let path = this.IMAGES_ENDBOSS_LIFEBAR[this.resolveImageIndex()];
+        this.img = this.imageCache[path];
+    }
+
+    resolveImageIndex() {
+        if (this.percentage == 100) {
+            return 0;
+        }
+        else if (this.percentage >= 80) {
+            return 1;
+        }
+        else if (this.percentage >= 60) {
+            return 2;
+        }
+        else if (this.percentage >= 40) {
+            return 3;
+        }
+        else if (this.percentage >= 20) {
+            return 4;
+        }
+        else if (this.percentage >= 0) {
+            return 5;
+        }
+    }
 
 }
+
+

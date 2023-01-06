@@ -148,6 +148,7 @@ class World {
                 if (bottle.isColliding(enemy)) {
                     this.bottleSplashed(bottle);
                     enemy.hit();
+                    this.endbossLifebar.setPercentage(this.level.endboss[0].energy);
                 }
             })
         });
