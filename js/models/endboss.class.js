@@ -1,5 +1,6 @@
 class Endboss extends MovableObject {
     characterIsNearby = false;
+    AttackCharacter = false;
     endbossEnrage = false;
     energy = 150;
     speed = 1.0;
@@ -34,6 +35,17 @@ class Endboss extends MovableObject {
         "./img/4_enemie_boss_chicken/4_hurt/G23.png"
     ]
 
+    IMAGES_ATTACK_ENDBOSS = [
+        "./img/4_enemie_boss_chicken/3_attack/G13.png",
+        "./img/4_enemie_boss_chicken/3_attack/G14.png",
+        "./img/4_enemie_boss_chicken/3_attack/G15.png",
+        "./img/4_enemie_boss_chicken/3_attack/G16.png",
+        "./img/4_enemie_boss_chicken/3_attack/G17.png",
+        "./img/4_enemie_boss_chicken/3_attack/G18.png",
+        "./img/4_enemie_boss_chicken/3_attack/G19.png",
+        "./img/4_enemie_boss_chicken/3_attack/G20.png"
+    ]
+
     currentImage = 0;
     currentImageHead = 0;
 
@@ -42,12 +54,14 @@ class Endboss extends MovableObject {
         this.loadImages2(this.IMAGES_HEAD_CHICKEN);
         this.loadImages(this.IMAGES_WALKING_ENDBOSS);
         this.loadImages(this.IMAGES_HURT_ENDBOSS);
-        this.x = 600;
+        this.loadImages(this.IMAGES_ATTACK_ENDBOSS);
+        this.x = 2000;
         this.animateHead(this.IMAGES_HEAD_CHICKEN);
         this.animateWalk(this.IMAGES_WALKING_ENDBOSS);
         this.checkCharacterisNearby();
         this.checkEndbossEnrage();
         this.checkCharacterIsHurt();
+        this.checkEndbossCanAttack();
     }
 
 
@@ -74,6 +88,14 @@ class Endboss extends MovableObject {
             if(this.isHurt()){
                 this.playAnimation(this.IMAGES_HURT_ENDBOSS);
             }
+        }, 150);
+    }
+
+    checkEndbossCanAttack(){
+        setInterval(() => {
+            if(this.AttackCharacter){
+            this.playAnimation(this.IMAGES_ATTACK_ENDBOSS);
+        }
         }, 150);
     }
 

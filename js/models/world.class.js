@@ -42,16 +42,20 @@ class World {
 
     slowIntervalls(){
         setInterval(() => {
-            this.checkCharacterNearEndboss();
+            this.getDistance();
+            this.checkEndbossActions(this.getDistance());
         }, 250);
     }
 
-    checkCharacterNearEndboss(){
-        if(this.character.x >= 70){
-            this.level.endboss[0].characterIsNearby = true;
-        }
+    getDistance(){
+        let distance = (this.level.endboss[0].x - this.character.x)
+        return distance;
     }
 
+
+
+
+ 
     checkCollisions() {
         this.isCollidingChicken();
         this.isCollidingSmallChicken();
@@ -176,6 +180,27 @@ class World {
 
 
 
+    checkEndbossActions(distance){
+     this.checkEndbossCanAttack(distance);
+     this.checkEndbossCanWalk(distance);
+    };
+
+
+
+
+    checkEndbossCanAttack(distance){
+        if(distance <= 90){
+            this.level.endboss[0].AttackCharacter = true; 
+        }else{
+            this.level.endboss[0].AttackCharacter = false;
+        }
+    }
+
+    checkEndbossCanWalk(distance){
+        if(distance <= 600){
+            this.level.endboss[0].characterIsNearby = true;
+        }
+    }
 
 
     draw() {
