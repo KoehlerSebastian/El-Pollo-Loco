@@ -1,6 +1,5 @@
 class Character extends MovableObject {
     speed = 2;
-    coins = 0;
     
 
     offset = {
@@ -67,13 +66,13 @@ class Character extends MovableObject {
 
     animate(IMAGES) {
         setInterval(() => {
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.isDead()) {
                 this.moveRight();
                 this.walking_sound.playbackRate = 1.5;
                 this.walking_sound.play();
             }
 
-            if (this.world.keyboard.LEFT && this.x > 0) {
+            if (this.world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
                 this.moveLeft(2.0);
                 this.walking_sound.playbackRate = 1.5;
                 this.walking_sound.play();

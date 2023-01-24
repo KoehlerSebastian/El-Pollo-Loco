@@ -2,6 +2,7 @@ class Endboss extends MovableObject {
     characterIsNearby = false;
     AttackCharacter = false;
     endbossEnrage = false;
+    endbossIsAlive = true;
     energy = 150;
     speed = 1.0;
     offset = {
@@ -46,72 +47,120 @@ class Endboss extends MovableObject {
         "./img/4_enemie_boss_chicken/3_attack/G20.png"
     ]
 
+
+    IMAGES_ENDBOSS_DEAD = [
+        "./img/4_enemie_boss_chicken/5_dead/G24.png",
+        "./img/4_enemie_boss_chicken/5_dead/G25.png",
+        "./img/4_enemie_boss_chicken/5_dead/G26.png",
+    ]
+
     currentImage = 0;
     currentImageHead = 0;
 
+    endbossDeadSound = new Audio("./audio/winSound.mp3");
     constructor() {
         super().loadImage(this.IMAGES_HEAD_CHICKEN[0]);
+        this.loadingImages();
+        this.x = 2000;
+        this.animateHead(this.IMAGES_HEAD_CHICKEN);
+        this.animateWalk(this.IMAGES_WALKING_ENDBOSS);
+        this.animateDead(this.IMAGES_ENDBOSS_DEAD);
+        this.checkStatus();
+    }
+
+
+
+    loadingImages(){
         this.loadImages2(this.IMAGES_HEAD_CHICKEN);
         this.loadImages(this.IMAGES_WALKING_ENDBOSS);
         this.loadImages(this.IMAGES_HURT_ENDBOSS);
         this.loadImages(this.IMAGES_ATTACK_ENDBOSS);
-        this.x = 2000;
-        this.animateHead(this.IMAGES_HEAD_CHICKEN);
-        this.animateWalk(this.IMAGES_WALKING_ENDBOSS);
+        this.loadImages(this.IMAGES_ENDBOSS_DEAD);
+    }
+
+
+    checkStatus(){
         this.checkCharacterisNearby();
         this.checkEndbossEnrage();
-        this.checkCharacterIsHurt();
+        this.checkEndbossIsHurt();
         this.checkEndbossCanAttack();
+        this.checkEndbossIsAlive();
     }
 
+    
 
-
-    checkCharacterisNearby(){
+    checkCharacterisNearby() {
         setInterval(() => {
-            if(this.characterIsNearby){
+            if (this.characterIsNearby && !this.isDead()) {
                 this.moveLeft(this.speed);
 
-        }
-        }, 1000/60);
+            }
+        }, 1000 / 60);
     }
 
-    checkEndbossEnrage(){
+    checkEndbossEnrage() {
         setInterval(() => {
-            if(this.energy <= 100){
-                this.speed = 1.5;
+            if (this.energy <= 100) {
+                this.speed = 1.8;
             }
         }, 250);
     }
 
-    checkCharacterIsHurt(){
+    checkEndbossIsHurt() {
         setInterval(() => {
-            if(this.isHurt()){
+            if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT_ENDBOSS);
             }
         }, 150);
     }
 
-    checkEndbossCanAttack(){
+    checkEndbossCanAttack() {
         setInterval(() => {
-            if(this.AttackCharacter){
-            this.playAnimation(this.IMAGES_ATTACK_ENDBOSS);
-        }
+            if (this.AttackCharacter) {
+                this.playAnimation(this.IMAGES_ATTACK_ENDBOSS);
+            }
+        }, 150);
+    }
+
+    checkEndbossIsAlive() {
+        setInterval(() => {
+            if (this.energy <= 0) {
+                this.endbossIsAlive = false;
+                this.endbossDeadSound.playbackRate = 2.5;
+                this.endbossDeadSound.play();
+            } else {
+                this.endbossIsAlive = true;
+            }
         }, 150);
     }
 
 
-    animateHead(ImagesHead){
+
+
+    animateHead(ImagesHead) {
+        if(!this.isDead()){
         setInterval(() => {
             this.playAnimationHead(ImagesHead);
         }, 550);
+    }
 
     }
 
-    animateWalk(ImagesWalking){
+    animateWalk(ImagesWalking) {
+        if(!this.isDead()){
         setInterval(() => {
             this.playAnimation(ImagesWalking)
         }, 250);
     }
+    }
 
+    animateDead(ImagesDead) {
+        setInterval(() => {
+            if(!this.endbossIsAlive){
+                this.playAnimation(ImagesDead);
+            }
+        }, 150);
+        
+    }
 
 }

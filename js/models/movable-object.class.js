@@ -6,6 +6,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     bottles = 0;
+    coins = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -19,9 +20,9 @@ class MovableObject extends DrawableObject {
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
-        }    
+        }
 
-         else {
+        else {
 
 
             return this.y <= 270;
@@ -31,87 +32,95 @@ class MovableObject extends DrawableObject {
 
     isColliding(object) {
         return this.rightBorder() > this.leftObjectBorder(object) &&
-               this.bottomBorder() > this.topObjectBorder(object) &&
-               this.leftBorder() < this.rightObjectBorder(object) &&
-               this.topBorder() < this.bottomObjectBorder(object);
-       }
-
-       
-   
-       rightBorder() {
-           return this.x + this.width - this.offset.right;
-       }
-   
-   
-       leftBorder() {
-           return this.x + this.offset.left;
-       }
-   
-   
-       topBorder() {
-           return this.y + this.offset.top;
-       }
-   
-   
-       bottomBorder() {
-           return this.y + this.height - this.offset.bottom;
-       }
-   
-   
-       rightObjectBorder(object) {
-           return object.x + object.width - object.offset.right;
-       }
-   
-   
-       leftObjectBorder(object) {
-           return object.x + object.offset.left;
-       }
-   
-   
-       topObjectBorder(object) {
-           return object.y + object.offset.top;
-       }
-   
-   
-       bottomObjectBorder(object) {
-           return object.y + object.height - object.offset.bottom;
-       }
-
-    hit() {
-        if(this instanceof Endboss)
-        this.energy -= 150/5;
-        if (this.energy <= 0) {
-            this.energy = 0;
-        } else {
-            this.lastHit = new Date().getTime();
-        }
+            this.bottomBorder() > this.topObjectBorder(object) &&
+            this.leftBorder() < this.rightObjectBorder(object) &&
+            this.topBorder() < this.bottomObjectBorder(object);
     }
 
-    bottleHitEnemy(){
+
+
+    rightBorder() {
+        return this.x + this.width - this.offset.right;
+    }
+
+
+    leftBorder() {
+        return this.x + this.offset.left;
+    }
+
+
+    topBorder() {
+        return this.y + this.offset.top;
+    }
+
+
+    bottomBorder() {
+        return this.y + this.height - this.offset.bottom;
+    }
+
+
+    rightObjectBorder(object) {
+        return object.x + object.width - object.offset.right;
+    }
+
+
+    leftObjectBorder(object) {
+        return object.x + object.offset.left;
+    }
+
+
+    topObjectBorder(object) {
+        return object.y + object.offset.top;
+    }
+
+
+    bottomObjectBorder(object) {
+        return object.y + object.height - object.offset.bottom;
+    }
+
+    hit() {
+        if (this instanceof Endboss) {
+            this.energy -= 150 / 5;
+
+        }
+        else if ((this instanceof Character) && (this.energy >= 10 && !this.isHurt())) 
+        {
+            console.log(this.isHurt())
+            this.energy -= 10;
+        }
+        
+        else if (this instanceof Character && this.energy <= 0){
+            this.energy = 0;
+
+        } 
+        
+        this.lastHit = new Date().getTime();
+        console.log("ELSE HIT")
+    }
+
+    bottleHitEnemy() {
         this.energy -= 25;
     }
 
- 
-    pickUp(){
-        if (this.bottles <= 4){
-        this.bottles += 1;
-        console.log(this.bottles);
-        }else{
-            console.log("full");
+
+    pickUp() {
+        if (this.bottles <= 4) {
+            this.bottles += 1;
+        } else {
+            return false;
         }
     }
 
 
-    pickUpCoins(){
-        this.coins ++;
+    pickUpCoins() {
+        this.coins += 1;
     }
-    
+
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000; //Difference in s
-        console.log("Passed");
-        return timepassed < 1;
+        return timepassed < 0.5;
     }
 
 

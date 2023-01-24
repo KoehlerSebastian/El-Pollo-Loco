@@ -1,7 +1,9 @@
 class GameOver extends DrawableObject {
 
-    width = 400;
-    height = 200; 
+    width = 768;
+    height = 400;
+    y = 0;
+    x = 0;
 
     
 

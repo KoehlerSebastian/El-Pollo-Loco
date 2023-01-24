@@ -1,4 +1,4 @@
-class CoinBar extends StatusBar{
+class CoinBar extends DrawableObject{
 
 
     IMAGES_COIN_BAR = [
@@ -11,7 +11,6 @@ class CoinBar extends StatusBar{
 
     ]
 
-    coinsInBag = 0;
 
     constructor(){
         super();
@@ -27,28 +26,28 @@ class CoinBar extends StatusBar{
 
 
     coinsLootet(coinsInBag) {
-        this.coins = coinsInBag
+        this.coinsInBag = coinsInBag;
         let path = this.IMAGES_COIN_BAR[this.resolveImageIndexCoins()];
         this.img = this.imageCache[path];
     }
 
     resolveImageIndexCoins() {
-        if (this.coins == 0) {
+        if (this.coinsInBag == 0) {
             return 0;
         }
-        else if (this.coins >= 1) {
+        else if (this.coinsInBag >= 1) {
             return 1;
         }
-        else if (this.coins >= 5) {
+        else if (this.coinsInBag >= 3) {
             return 2;
         }
-        else if (this.coins >= 10) {
+        else if (this.coinsInBag >= 5) {
             return 3;
         }
-        else if (this.coins >= 15) {
+        else if (this.coinsInBag >= 8) {
             return 4;
         }
-        else if (this.coins == 20) {
+        else if (this.coinsInBag == 10) {
             return 5;
         }
     }

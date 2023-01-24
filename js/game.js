@@ -4,27 +4,20 @@ let keyboard = new Keyboard();
 
 
 
-
-
-
-
-
 function init(){
 document.getElementById("canvas").classList.add("d-none");
-
-
-//     console.log("My Character is", world.character)
-//     console.log("My Enemies are", world.enemies);
-// }
+level1.runWorld = false;
 }
 
 
 function startGame(){
+
     document.getElementById("start-overlay").classList.add("d-none");
     document.getElementById("canvas").classList.remove("d-none");
-
+    level1.runWorld = true;
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
+
 }
 
 
