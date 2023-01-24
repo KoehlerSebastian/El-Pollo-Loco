@@ -87,6 +87,7 @@ class MovableObject extends DrawableObject {
         {
             console.log(this.isHurt())
             this.energy -= 10;
+            this.lastHit = new Date().getTime();
         }
         
         else if (this instanceof Character && this.energy <= 0){
@@ -94,8 +95,8 @@ class MovableObject extends DrawableObject {
 
         } 
         
-        this.lastHit = new Date().getTime();
-        console.log("ELSE HIT")
+        // this.lastHit = new Date().getTime();
+        // console.log("ELSE HIT")
     }
 
     bottleHitEnemy() {
