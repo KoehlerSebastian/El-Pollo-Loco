@@ -3,14 +3,23 @@ class Endboss extends MovableObject {
     AttackCharacter = false;
     endbossEnrage = false;
     endbossIsAlive = true;
-    energy = 150;
+    energy = 100;
     speed = 1.0;
+    x;
+    y = 150;
+    height = 300;
+    width = 500;
+
+
+
     offset = {
-        top: 20,
+        top: 50,
         bottom: 30,
-        left: 20,
-        right: 20
+        left: 100,
+        right: 100
     }
+
+
     IMAGES_HEAD_CHICKEN = [
         "./img/4_enemie_boss_chicken/2_alert/G5.png",
         "./img/4_enemie_boss_chicken/2_alert/G6.png",

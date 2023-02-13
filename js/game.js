@@ -6,17 +6,14 @@ let keyboard = new Keyboard();
 
 function init(){
 document.getElementById("canvas").classList.add("d-none");
-level1.runWorld = false;
+
 }
 
 
 function startGame(){
-
+    initLevel();
     document.getElementById("start-overlay").classList.add("d-none");
     document.getElementById("canvas").classList.remove("d-none");
-    level1.runWorld = true;
-    canvas = document.getElementById("canvas");
-    world = new World(canvas, keyboard);
 
 }
 

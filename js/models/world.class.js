@@ -27,18 +27,16 @@ class World {
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.drawWorld();
+        this.draw();
         this.setWorld();
         this.run();
         this.slowIntervalls();
 
     }
 
-    drawWorld() {
-        if (level1.runWorld) {
-            this.draw();
-        }
-    }
+
+
+
 
 
     setWorld() {
@@ -220,6 +218,7 @@ class World {
 
 
 
+
     checkThrownObjectHitGround() {
         this.throwObjects.forEach((bottle) => {
             if (!bottle.isAboveGround()) {
@@ -234,7 +233,6 @@ class World {
         let bottleSplashed = new BottleSplash(bottle.x, bottle.y);
         this.thrownObjects.push(bottleSplashed);
         this.throwObjects = [];
-        //sound einfügen
         setTimeout(() => this.thrownObjects.splice(bottleSplashed), 500);
     }
 
@@ -266,7 +264,6 @@ class World {
         }
     
 
-
     draw() {
         // Canvas wird gelöscht
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -290,7 +287,6 @@ class World {
         this.addToMap(this.coinBar);
         this.ctx.translate(this.camera_x, 0);
         this.addToMap(this.character);
-
 
 
 

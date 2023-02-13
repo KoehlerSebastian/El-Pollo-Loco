@@ -19,11 +19,14 @@ class MovableObject extends DrawableObject {
 
     isAboveGround() {
         if (this instanceof ThrowableObject) {
-            return true;
+            return this.y <= 360;
         }
 
-        else {
-
+        else if(this instanceof SmallChicken) 
+            {
+                return this.y <= 360;
+            }else
+            {
 
             return this.y <= 270;
         }
@@ -80,7 +83,7 @@ class MovableObject extends DrawableObject {
 
     hit() {
         if (this instanceof Endboss) {
-            this.energy -= 150 / 5;
+            this.energy -= 20;
 
         }
         else if ((this instanceof Character) && (this.energy >= 10 && !this.isHurt())) 
@@ -114,7 +117,7 @@ class MovableObject extends DrawableObject {
 
 
     pickUpCoins() {
-        this.coins += 1;
+        this.coins ++;
     }
 
 
@@ -137,7 +140,10 @@ class MovableObject extends DrawableObject {
     }
 
     moveLeft(speedX) {
-        this.x -= speedX;
+        if(runWorld){
+            this.x -= speedX;
+        }
+
     }
 
 

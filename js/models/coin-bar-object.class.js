@@ -11,6 +11,8 @@ class CoinBar extends DrawableObject{
 
     ]
 
+    coins;
+
 
     constructor(){
         super();
@@ -24,30 +26,29 @@ class CoinBar extends DrawableObject{
 
 
 
-
-    coinsLootet(coinsInBag) {
-        this.coinsInBag = coinsInBag;
+    coinsLootet(coins) {
+        this.coins = coins;
         let path = this.IMAGES_COIN_BAR[this.resolveImageIndexCoins()];
         this.img = this.imageCache[path];
     }
 
     resolveImageIndexCoins() {
-        if (this.coinsInBag == 0) {
+        if (this.coins == 0) {
             return 0;
         }
-        else if (this.coinsInBag >= 1) {
+        else if (this.coins == 1) {
             return 1;
         }
-        else if (this.coinsInBag >= 3) {
+        else if (this.coins == 2) {
             return 2;
         }
-        else if (this.coinsInBag >= 5) {
+        else if (this.coins == 3) {
             return 3;
         }
-        else if (this.coinsInBag >= 8) {
+        else if (this.coins== 4) {
             return 4;
         }
-        else if (this.coinsInBag == 10) {
+        else if (this.coins == 5) {
             return 5;
         }
     }

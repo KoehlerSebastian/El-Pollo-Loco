@@ -4,6 +4,7 @@ class SmallChicken extends MovableObject {
     height = 65;
     x;
     y = 360;
+    random;
     offset = {
         top: 0,
         bottom: 30,
@@ -37,9 +38,11 @@ class SmallChicken extends MovableObject {
         this.x = 1000 + Math.floor(Math.random() * 600);
 
         this.speed = 0.1 + Math.random() * 1.55;
+        this.random = (2000 + Math.random() * 4999);
 
-
-        this.animate(this.IMAGES_SMALL_CHICKEN)
+        this.animate(this.IMAGES_SMALL_CHICKEN);
+        this.applyGravity();
+        this.chickenJump();
     }
 
 
@@ -51,13 +54,19 @@ class SmallChicken extends MovableObject {
         }, 1000 / 60);
 
 
-
-
         setInterval(() => {
             this.playAnimation(IMAGES);
         }, 200);
 
     }
+
+
+    chickenJump(){
+        setInterval(() => {
+            this.speedY = 15;
+        }, this.random);
+    }
+
 
 }
 

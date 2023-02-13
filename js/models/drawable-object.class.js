@@ -2,11 +2,6 @@ class DrawableObject{
     img;
     imageCache = [];
     imageCache2 = [];
-    x = 60;
-    y = 270;
-    height = 150;
-    width = 100;
-
 
     loadImage(path){
         this.img = new Image();
