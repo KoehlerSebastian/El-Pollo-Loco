@@ -44,7 +44,7 @@ class World {
         if (soundActive) {
             this.SOUND_GAME_WORLD.play();
             this.SOUND_GAME_WORLD.loop = true;
-            this.SOUND_GAME_WORLD.volume =0.5;
+            this.SOUND_GAME_WORLD.volume = 0.5;
         }
     }
 
@@ -164,7 +164,9 @@ class World {
                 this.level.bottles.splice(i, 1);
                 this.character.pickUp();
                 this.bottleBar.bottlesLootet(this.character.bottles);
-                this.SOUND_PICKUP_BOTTLE.play();
+                if (soundActive) {
+                    this.SOUND_PICKUP_BOTTLE.play();
+                }
             };
         });
     }
@@ -178,9 +180,10 @@ class World {
                 this.level.coins.splice(i, 1);
                 this.character.pickUpCoins();
                 this.coinBar.coinsLootet(this.character.coins);
-                this.SOUND_PICKUP_COIN.play();
-                this.SOUND_PICKUP_COIN.volume = 0.5;
-
+                if (soundActive) {
+                    this.SOUND_PICKUP_COIN.play();
+                    this.SOUND_PICKUP_COIN.volume = 0.5;
+                }
             }
         })
     }
@@ -229,7 +232,9 @@ class World {
             this.gameIsLost = false;
         } else if (this.character.isDead()) {
             this.gameIsLost = true;
-            this.SOUND_GAME_LOST.play();
+            if (soundActive) {
+                this.SOUND_GAME_LOST.play();
+            }
         }
     }
     /**

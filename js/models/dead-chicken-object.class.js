@@ -7,15 +7,16 @@ class DeadChicken extends MovableObject {
 
     SOUND_DEAD_CHICKEN = new Audio("./audio/killedChickens.mp3");
 
-    constructor(x, y){
+    constructor(x, y) {
         super().loadImage(this.IMAGE_DEAD_CHICKEN[0]);
         this.x = x;
         this.y = y;
         this.playSoundDeadChicken();
     }
 
-    playSoundDeadChicken(){
-        this.SOUND_DEAD_CHICKEN.play();
+    playSoundDeadChicken() {
+        if (soundActive) {
+            this.SOUND_DEAD_CHICKEN.play();
+        }
     }
-
 }

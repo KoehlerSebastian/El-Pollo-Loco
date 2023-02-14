@@ -5,11 +5,11 @@ class DeadSmallChicken extends MovableObject {
     x;
 
 
-IMAGES_DEAD_SMALL_CHICKEN = [
-    "./img/3_enemies_chicken/chicken_small/2_dead/dead.png"
-]
+    IMAGES_DEAD_SMALL_CHICKEN = [
+        "./img/3_enemies_chicken/chicken_small/2_dead/dead.png"
+    ]
 
-SOUND_DEAD_CHICKEN = new Audio("./audio/killedChickens.mp3");
+    SOUND_DEAD_CHICKEN = new Audio("./audio/killedChickens.mp3");
 
 
     constructor(x, y) {
@@ -22,9 +22,12 @@ SOUND_DEAD_CHICKEN = new Audio("./audio/killedChickens.mp3");
     }
 
 
-        playSoundDeadChicken(){
+    playSoundDeadChicken() {
+        if (soundActive) {
             this.SOUND_DEAD_CHICKEN.play();
         }
+    }
+
 
 
 

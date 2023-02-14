@@ -90,19 +90,9 @@ class MovableObject extends DrawableObject {
         {
             console.log(this.isHurt())
             this.energy -= 10;
-            this.lastHit = new Date().getTime();
         }
-        
-        else if (this instanceof Character && this.energy <= 0){
-            this.energy = 0;
-        }
-
-        else if(this instanceof Chicken || this instanceof SmallChicken){
-        console.log("LOOOSER")
-    }
-        
+         
         this.lastHit = new Date().getTime();
-        console.log("ELSE HIT")
     }
 
     bottleHitEnemy() {
@@ -127,7 +117,7 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000; //Difference in s
-        return timepassed < 0.5;
+        return timepassed < 1;
     }
 
 

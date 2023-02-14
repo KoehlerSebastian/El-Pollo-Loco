@@ -100,6 +100,7 @@ h1{
 
 
 canvas {
+    position: relative;
     background-color: black;
     display: block;
 }
@@ -163,6 +164,25 @@ rotate: 90deg;
     width: 90%;
 }
 
+.attack-button{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid orange;
+    left: 5%;
+    bottom: 5%;
+}
+
+.attack-button > img{
+    rotate: 30deg;
+    object-fit: contain;
+    width: 100%;
+}
 @media screen and (max-width: 720px){
     h1{
         display: none;
