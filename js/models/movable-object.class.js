@@ -3,7 +3,6 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 1;
-    energy = 100;
     lastHit = 0;
     bottles = 0;
     coins = 0;
@@ -84,6 +83,7 @@ class MovableObject extends DrawableObject {
     hit() {
         if (this instanceof Endboss) {
             this.energy -= 20;
+            console.log("treffer");
 
         }
         else if ((this instanceof Character) && (this.energy >= 10 && !this.isHurt())) 
@@ -95,11 +95,14 @@ class MovableObject extends DrawableObject {
         
         else if (this instanceof Character && this.energy <= 0){
             this.energy = 0;
+        }
 
-        } 
+        else if(this instanceof Chicken || this instanceof SmallChicken){
+        console.log("LOOOSER")
+    }
         
-        // this.lastHit = new Date().getTime();
-        // console.log("ELSE HIT")
+        this.lastHit = new Date().getTime();
+        console.log("ELSE HIT")
     }
 
     bottleHitEnemy() {

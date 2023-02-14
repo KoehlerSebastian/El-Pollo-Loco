@@ -2,6 +2,7 @@ class SmallChicken extends MovableObject {
 
     width = 50;
     height = 65;
+    energy = 20;
     x;
     y = 360;
     random;

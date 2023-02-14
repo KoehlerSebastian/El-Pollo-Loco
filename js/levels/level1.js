@@ -1,5 +1,6 @@
 let level1;
 let runWorld = false;
+let soundActive = true;
 
 
 function initLevel(){
@@ -15,6 +16,13 @@ function initWorld(){
     runWorld = true;
 }
 
+function muteSound(){
+    if(soundActive){
+        soundActive = false;
+    }else{
+        soundActive = true;
+    }
+}
 
 
     

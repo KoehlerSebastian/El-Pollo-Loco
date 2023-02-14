@@ -40,6 +40,54 @@ body {
     max-height: 100vh;
 }
 
+.button-74 {
+ font-family: 'Cinzel Decorative';
+  display: flex;
+  justify-content: center;
+  width: 4rem;
+  height: 3rem;
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-74:hover {
+  background-color: #fff;
+}
+
+.button-74:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+.button-images{
+    display: flex;
+    height: 42px;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+
 h1{
     font-family: 'Cinzel Decorative', Arial, Helvetica, sans-serif;
     font-size: 4rem;
@@ -70,11 +118,50 @@ canvas {
     width: 720px;
     height: 480px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     background-image: url("../img/9_intro_outro_screens/start/startscreen_1.png");
     background-size: 100% 100%;
 
-} 
+}
+
+.row {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.key {
+    border: 2px solid orange;
+    background-color: #fbeee0;;
+    border-radius: 10px;
+    font-family: "Cinzel Decorative";
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    width: 23%;
+    justify-content: center;
+    gap: 6px;
+}
+
+#jump-img{
+object-fit: contain;
+rotate: 90deg;
+}
+
+#keyD{
+    font-weight: bold;
+    font-size: 2rem;
+    color: orange;
+}
+
+#settings-frame{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
 
 @media screen and (max-width: 720px){
     h1{

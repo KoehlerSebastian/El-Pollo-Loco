@@ -1,16 +1,18 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+const imageMusic = document.getElementById('music-img');
+const imageSourcesMusic = ['./css/icons/music.png', './css/icons/music_red.png'];
+let currentImageIndex = 0;
+//<button onclick="muteBgMusic()"id="music-btn" class="button-74" role="button"><img id="music-img"class="button-images" src="./css/icons/music.png"
 
-
-
-function init(){
-document.getElementById("canvas").classList.add("d-none");
+function init() {
+    document.getElementById("canvas").classList.add("d-none");
 
 }
 
 
-function startGame(){
+function startGame() {
     initLevel();
     document.getElementById("start-overlay").classList.add("d-none");
     document.getElementById("canvas").classList.remove("d-none");
@@ -18,7 +20,19 @@ function startGame(){
 }
 
 
-window.addEventListener("keydown", (event) =>{
+function showControls() {
+    document.getElementById("control-btn").classList.toggle("d-none");
+}
+
+
+function muteBgMusic() {
+    currentImageIndex = (currentImageIndex + 1) % imageSourcesMusic.length;
+    document.getElementById("music-img").src = imageSourcesMusic[currentImageIndex];
+    muteSound();
+}
+
+
+window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
         keyboard.RIGHT = true;
     }
@@ -40,28 +54,28 @@ window.addEventListener("keydown", (event) =>{
     }
 
     if (event.keyCode == 68) {
-            keyboard.D = true;
+        keyboard.D = true;
 
 
     }
 
-    window.addEventListener("keyup", (event) =>{
+    window.addEventListener("keyup", (event) => {
         if (event.keyCode == 39) {
             keyboard.RIGHT = false;
         }
-    
+
         if (event.keyCode == 37) {
             keyboard.LEFT = false;
         }
-    
+
         if (event.keyCode == 38) {
             keyboard.UP = false;
         }
-    
+
         if (event.keyCode == 40) {
             keyboard.DOWN = false;
         }
-    
+
         if (event.keyCode == 32) {
             keyboard.SPACE = false;
         }
@@ -69,7 +83,7 @@ window.addEventListener("keydown", (event) =>{
         if (event.keyCode == 68) {
             keyboard.D = false;
         }
-    
+
     });
 
     // console.log(event);

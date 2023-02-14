@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,20 +36,37 @@
     <title>El Pollo Loco</title>
 
 </head>
+
 <body onload="init()">
 
     <div class="mainpage-container">
         <h1>EL POLLO LOCO</h1>
-        <canvas class ="d-none" id="canvas" width="720" height="480"></canvas>
+        <canvas class="d-none" id="canvas" width="720" height="480"></canvas>
         <div class="start-container" id="start-overlay">
             <div class="row">
-                <button onclick="startGame()"class="btn-1">
-                    START
-                </button>
+                <button onclick="startGame(); "class="button-74" role="button">START</button>
+                <button onclick="showControls()"class="button-74" role="button"><img class="button-images" src="./css/icons/controller.png"
+                        alt="Controller_PICTURE"></button>
+                <button onclick="muteBgMusic()"id="music-btn" class="button-74" role="button"><img id="music-img"class="button-images" src="./css/icons/music.png"
+                        alt="MUSIC_PICTURE"></button>
             </div>
-            
+            <div id="control-btn" class="row d-none">
+                <div id="settings-frame">
+                    <div class="key">Move left
+                        <img src="./css/icons/left.png" alt="">
+                    </div>
+                    <div class="key">Move right
+                        <img src="./css/icons/right.png" alt="">
+                    </div>
+                    <div class="key">Jump
+                        <img id="jump-img"src="./css/icons/left.png" alt="">
+                    </div>
+                    <div class="key">Throw <div id="keyD">D</div></div>
+                </div>
+            </div>
         </div>
     </div>
 
 </body>
+
 </html>

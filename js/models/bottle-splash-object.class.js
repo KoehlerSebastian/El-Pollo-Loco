@@ -45,5 +45,6 @@ class BottleSplash extends MovableObject{
     playSplashSound(){
         this.bottleSplashSound.playbackRate = 2.5;
         this.bottleSplashSound.play();
+        this.bottleSplashSound.volume = 0.5;
     }
 }
