@@ -6,7 +6,7 @@ const imageSourcesMusic = ['./css/icons/music.png', './css/icons/music_red.png']
 let currentImageIndex = 0;
 let lastTap = 0;
 const delayThrow = 500; // delay in milliseconds for double tap
-const delay = 300;
+const delay = 300; // delay in milliseconds for double tap
 
 
 
@@ -21,6 +21,7 @@ function startGame() {
     initLevel();
     document.getElementById("start-overlay").classList.add("d-none");
     document.getElementById("canvas").classList.remove("d-none");
+    document.getElementById("control-btn-ingame").classList.remove("d-none");
 
 }
 
@@ -29,12 +30,27 @@ function showControls() {
     document.getElementById("control-btn").classList.toggle("d-none");
 }
 
+function showControlIngame(){
+    document.getElementById("key-ingame-right").classList.toggle("d-none");
+    document.getElementById("key-ingame-left").classList.toggle("d-none");
+}
+
 
 function muteBgMusic() {
     currentImageIndex = (currentImageIndex + 1) % imageSourcesMusic.length;
     document.getElementById("music-img").src = imageSourcesMusic[currentImageIndex];
     muteSound();
+    console.log("PENNER")
 }
+
+function muteBgMusicIngame() {
+    currentImageIndex = (currentImageIndex + 1) % imageSourcesMusic.length;
+    document.getElementById("music-img-ingame").src = imageSourcesMusic[currentImageIndex];
+    muteSound();
+    playGameSound();
+    console.log("PENNER")
+}
+
 
 
 window.addEventListener("keydown", (event) => {

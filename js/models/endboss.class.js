@@ -57,23 +57,23 @@ class Endboss extends MovableObject {
     ]
 
 
-    IMAGES_ENDBOSS_DEAD = [
-        "./img/4_enemie_boss_chicken/5_dead/G24.png",
-        "./img/4_enemie_boss_chicken/5_dead/G25.png",
-        "./img/4_enemie_boss_chicken/5_dead/G26.png",
-    ]
+    // IMAGES_ENDBOSS_DEAD = [
+    //     "./img/4_enemie_boss_chicken/5_dead/G24.png",
+    //     "./img/4_enemie_boss_chicken/5_dead/G25.png",
+    //     "./img/4_enemie_boss_chicken/5_dead/G26.png",
+    // ]
 
     currentImage = 0;
     currentImageHead = 0;
 
-    endbossDeadSound = new Audio("./audio/winSound.mp3");
+    // endbossDeadSound = new Audio("./audio/winSound.mp3");
     constructor() {
         super().loadImage(this.IMAGES_HEAD_CHICKEN[0]);
         this.loadingImages();
         this.x = 2000;
         this.animateHead(this.IMAGES_HEAD_CHICKEN);
         this.animateWalk(this.IMAGES_WALKING_ENDBOSS);
-        this.animateDead(this.IMAGES_ENDBOSS_DEAD);
+        // this.animateDead(this.IMAGES_ENDBOSS_DEAD);
         this.checkStatus();
     }
 
@@ -84,7 +84,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_WALKING_ENDBOSS);
         this.loadImages(this.IMAGES_HURT_ENDBOSS);
         this.loadImages(this.IMAGES_ATTACK_ENDBOSS);
-        this.loadImages(this.IMAGES_ENDBOSS_DEAD);
+        // this.loadImages(this.IMAGES_ENDBOSS_DEAD);
     }
 
 
@@ -136,8 +136,8 @@ class Endboss extends MovableObject {
             if (this.energy <= 0) {
                 this.endbossIsAlive = false;
                 if (soundActive) {
-                    this.endbossDeadSound.playbackRate = 2.5;
-                    this.endbossDeadSound.play();
+                    // this.endbossDeadSound.playbackRate = 2.5;
+                    // this.endbossDeadSound.play();
                 }
             } else {
                 this.endbossIsAlive = true;
@@ -165,13 +165,6 @@ class Endboss extends MovableObject {
         }
     }
 
-    animateDead(ImagesDead) {
-        setInterval(() => {
-            if (!this.endbossIsAlive) {
-                this.playAnimation(ImagesDead);
-            }
-        }, 150);
 
-    }
 
 }

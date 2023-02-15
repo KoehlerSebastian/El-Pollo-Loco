@@ -1,7 +1,7 @@
 let level1;
 let runWorld = false;
 let soundActive = true;
-
+SOUND_GAME_WORLD_LVL1 = new Audio("./audio/bgMusic.mp3")
 
 function initLevel(){
 level1 = new Level(enemies, smallChicken, clouds, backgroundObjects, bottles, endboss, coins);
@@ -14,16 +14,31 @@ function initWorld(){
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
     runWorld = true;
+    playGameSound();
 }
 
 function muteSound(){
     if(soundActive){
         soundActive = false;
+        playGameSound();
     }else{
         soundActive = true;
+
     }
 }
 
+  /**
+    Plays the game sound if the sound is active.
+    */
+    function playGameSound() {
+        if (soundActive) {
+            this.SOUND_GAME_WORLD_LVL1.play();
+            this.SOUND_GAME_WORLD_LVL1.loop = true;
+            this.SOUND_GAME_WORLD_LVL1.volume = 0.5;
+    }  else{
+        this.SOUND_GAME_WORLD_LVL1.pause();
+    }
+    }
 
     
 const enemies = [ 

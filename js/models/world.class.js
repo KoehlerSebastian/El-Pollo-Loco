@@ -4,6 +4,7 @@ class World {
     thrownObjects = [];
     deadChicken = [];
     deadSmallChicken = [];
+    deadEndboss = [];
     gameIsOver = false;
     gameIsLost = false;
     gameOver = new GameOver();
@@ -14,14 +15,15 @@ class World {
     keyboard;
     lastThrow = 0;
     camera_x = -100;
+    endbossIsDead = false;
     endbossLifebar = new EndbossLifebar();
     statusBar = new StatusBar();
     bottleBar = new BottleBar();
     coinBar = new CoinBar();
-
-
-    SOUND_GAME_WORLD = new Audio("./audio/bgMusic.mp3")
+    hitCount = 0;
+    endgameStart = false;
     SOUND_GAME_LOST = new Audio("./audio/youLose.mp3");
+    SOUND_GAME_WON = new Audio("./audio/winSound.mp3");
     SOUND_PICKUP_COIN = new Audio("./audio/pickupcoin.mp3");
     SOUND_PICKUP_BOTTLE = new Audio("./audio/pickupbottle.mp3");
 
@@ -33,19 +35,7 @@ class World {
         this.setWorld();
         this.run();
         this.slowIntervalls();
-        this.playGameSound();
 
-    }
-
-    /**
-    Plays the game sound if the sound is active.
-    */
-    playGameSound() {
-        if (soundActive) {
-            this.SOUND_GAME_WORLD.play();
-            this.SOUND_GAME_WORLD.loop = true;
-            this.SOUND_GAME_WORLD.volume = 0.5;
-        }
     }
 
     /**
@@ -74,6 +64,7 @@ class World {
             this.getDistance();
             this.checkEndbossActions(this.getDistance());
             this.checkGameStatus();
+            this.checkReachedEndboss(this.getDistance());
         }, 250);
     }
     /**
@@ -85,13 +76,17 @@ class World {
         return distance;
     }
 
+    checkReachedEndboss(distance){
 
+    }
 
 
     /**
      * Checks for collisions between the character and various game elements, such as enemies, bottles, and coins.
      * Calls methods to handle collisions as appropriate.
      */
+
+
 
     checkCollisions() {
         this.isCollidingChicken();
@@ -244,7 +239,10 @@ class World {
         if (this.level.endboss[0].energy > 0) {
             this.gameIsOver = false;
         } else {
-            this.gameIsOver = true;
+            setTimeout(() => {
+                this.gameIsOver = true;
+            }, 2000);
+
         }
     }
     /**
@@ -267,9 +265,7 @@ class World {
         this.throwObjects.forEach((bottle) => {
             typeOfEnemy.forEach((enemy, i) => {
                 if (bottle.isColliding(enemy) && typeOfEnemy == endboss) {
-                    this.bottleSplashed(bottle);
-                    enemy.hit();
-                    this.endbossLifebar.setPercentage(this.level.endboss[0].energy);
+                    this.endbossHit(enemy, bottle)
                 } else if (bottle.isColliding(enemy) && typeOfEnemy != endboss) {
                     this.bottleSplashed(bottle);
                     this.enemyIsDead(typeOfEnemy, i);
@@ -278,6 +274,32 @@ class World {
         });
     }
 
+    endbossHit(enemy, bottle) {
+
+        if (!this.level.endboss[0].isDead() && this.level.endboss[0].energy > 20) {
+            this.bottleSplashed(bottle);
+            enemy.hit();
+            this.endbossLifebar.setPercentage(this.level.endboss[0].energy);
+
+        } else {
+            this.endbossIsDead = true;
+            this.level.endboss[0].energy = 0;
+            let deadEnemyEndboss = new DeadEndboss(enemy.x, enemy.y);
+            this.deadEndboss.push(deadEnemyEndboss);
+            this.playSoundGameWon();
+            setTimeout(() => {
+                this.deadEndboss.splice(0,1);
+            }, 1500);
+
+        }
+    }
+    playSoundGameWon(){
+        if(soundActive){
+            this.SOUND_GAME_WON.play();
+        }
+    }
+
+    
 
     /**
      * Removes the enemy at the given index from the level and adds a dead enemy to the game.
@@ -343,8 +365,9 @@ class World {
     }
 
     checkEndbossCanWalk(distance) {
-        if (distance <= 600 && distance > 60) {
+        if (distance <= 600 && distance > 60 && !this.endbossIsDead) {
             this.level.endboss[0].characterIsNearby = true;
+            this.endgameStart = true;
         } else {
             this.level.endboss[0].characterIsNearby = false;
         }
@@ -364,13 +387,12 @@ class World {
         if (this.gameIsOver) {
             this.addToMap(this.gameOver);
         }
-
         if (this.gameIsLost) {
             this.addToMap(this.gameLost);
         }
 
         this.addToMap(this.statusBar);
-        if (this.level.endboss[0].characterIsNearby) {
+        if (this.level.endboss[0] && !this.level.endboss[0].isDead() && this.endgameStart) {
             this.addToMap(this.endbossLifebar);
         }
         this.addToMap(this.bottleBar);
@@ -385,9 +407,12 @@ class World {
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.endboss);
+        if (!this.endbossIsDead) {
+            this.addObjectsToMap(this.level.endboss);
+        }
         this.addObjectsToMap(this.deadChicken);
         this.addObjectsToMap(this.deadSmallChicken);
+        this.addObjectsToMap(this.deadEndboss);
         this.addObjectsToMap(this.throwObjects);
         this.addObjectsToMap(this.thrownObjects);
         this.ctx.translate(-this.camera_x, 0);
@@ -409,7 +434,6 @@ class World {
             this.addToMap(o);
         });
     }
-
 
 
     /**

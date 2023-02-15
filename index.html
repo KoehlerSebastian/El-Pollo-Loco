@@ -17,6 +17,7 @@
     <script src="./js/models/cloud.class.js"></script>
     <script src="./js/models/dead-chicken-object.class.js"></script>
     <script src="./js/models/dead-small-chicken.object.class.js"></script>
+    <script src="./js/models/dead-endboss-object.class.js"></script>
     <script src="./js/models/background-object.class.js"></script>
     <script src="./js/models/gameover.class.js"></script>
     <script src="./js/models/youLost.class.js"></script>
@@ -45,7 +46,8 @@
         </canvas>
         <div class="start-container" id="start-overlay">
             <div class="row">
-                <button onclick="startGame(); " class="button-74" role="button">START</button>
+                <button onclick="startGame(); " class="button-74" role="button"><img class="button-images"
+                        src="./css/icons/play.png" alt=""></button>
                 <button onclick="showControls()" class="button-74" role="button"><img class="button-images"
                         src="./css/icons/controller.png" alt="Controller_PICTURE"></button>
                 <button onclick="muteBgMusic()" id="music-btn" class="button-74" role="button"><img id="music-img"
@@ -69,10 +71,48 @@
         </div>
     </div>
 
-            <!-- Mobile Attack -->
-            <div class="attack-button">
-                <img src="./img/6_salsa_bottle/salsa_bottle.png">
+    <!-- Mobile Attack
+            <div class="ingame-settings">
+                <div onclick="muteBgMusicIngame()" class="attack-button">
+                    <img id="music-img-ingame"src="./css/icons/music.png">
+                </div>
+                <div class="settings-button">
+                    <img src="./css/icons/controller.png">
+                </div>
+            </div> -->
+
+    <div id="control-btn-ingame" class="row-ingame d-none">
+        <div id="settings-frame-ingame">
+            <div class="key-ingame-middle">
+                <div onclick="muteBgMusicIngame()" class="attack-button">
+                    <img id="music-img-ingame" src="./css/icons/music.png">
+                </div>
+                <div onclick="showControlIngame();" class="settings-button">
+                    <img src="./css/icons/controller.png">
+                </div>
             </div>
+            <div class="key-ingame-left d-none" id="key-ingame-left">
+                <div class="key-ingame">Move left
+                    <img src="./css/icons/left.png" alt="">
+                </div>
+                <div class="key-ingame">Move right
+                    <img src="./css/icons/right.png" alt="">
+                </div>
+            </div>
+
+            <div class="key-ingame-right d-none" id="key-ingame-right">
+                <div class="key-ingame">Jump
+                    <img id="jump-img" src="./css/icons/left.png" alt="">
+                </div>
+                <div class="key-ingame">Throw <div id="keyD">D</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+
 
 
 </body>
