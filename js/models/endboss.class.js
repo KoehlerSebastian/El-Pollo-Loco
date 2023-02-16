@@ -64,7 +64,7 @@ class Endboss extends MovableObject {
     // ]
 
     currentImage = 0;
-    currentImageHead = 0;
+    currentImage2 = 0;
 
     // endbossDeadSound = new Audio("./audio/winSound.mp3");
     constructor() {
@@ -151,7 +151,7 @@ class Endboss extends MovableObject {
     animateHead(ImagesHead) {
         if (!this.isDead()) {
             setInterval(() => {
-                this.playAnimationHead(ImagesHead);
+                this.playAnimation2(ImagesHead);
             }, 550);
         }
 

@@ -49,7 +49,7 @@
                 <button onclick="startGame(); " class="button-74" role="button"><img class="button-images"
                         src="./css/icons/play.png" alt=""></button>
                 <button onclick="showControls()" class="button-74" role="button"><img class="button-images"
-                        src="./css/icons/controller.png" alt="Controller_PICTURE"></button>
+                        id ="control-img"src="./css/icons/controller.png" alt="Controller_PICTURE"></button>
                 <button onclick="muteBgMusic()" id="music-btn" class="button-74" role="button"><img id="music-img"
                         class="button-images" src="./css/icons/music.png" alt="MUSIC_PICTURE"></button>
             </div>
@@ -66,20 +66,26 @@
                     </div>
                     <div class="key">Throw <div id="keyD">D</div>
                     </div>
+
+                </div>
+                <div id="settings-frame-mobile" class="d-none">
+                    <div class="key">Move left
+                        <div class="key-mobile">Tap left</div>
+                    </div>
+                    <div class="key">Move right
+                        <div class="key-mobile">Tap right</div>
+                    </div>
+                    <div class="key">Jump
+                        <div class="key-mobile">Double tap left or right</div>
+                    </div>
+                    <div class="key">Throw
+                        <div class="key-mobile">Double tap top right</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Mobile Attack
-            <div class="ingame-settings">
-                <div onclick="muteBgMusicIngame()" class="attack-button">
-                    <img id="music-img-ingame"src="./css/icons/music.png">
-                </div>
-                <div class="settings-button">
-                    <img src="./css/icons/controller.png">
-                </div>
-            </div> -->
 
     <div id="control-btn-ingame" class="row-ingame d-none">
         <div id="settings-frame-ingame">
@@ -88,7 +94,7 @@
                     <img id="music-img-ingame" src="./css/icons/music.png">
                 </div>
                 <div onclick="showControlIngame();" class="settings-button">
-                    <img src="./css/icons/controller.png">
+                    <img id="control-img-ingame" src="./css/icons/controller.png">
                 </div>
             </div>
             <div class="key-ingame-left d-none" id="key-ingame-left">
@@ -107,10 +113,22 @@
                 <div class="key-ingame">Throw <div id="keyD">D</div>
                 </div>
             </div>
+<!-- MOBILE SETTINGS -->
+            <div class="key-ingame-left d-none" id="key-ingame-left-mobile">
+                <div class="key-ingame-mobile">Move Left <div>Tap left</div>
+                </div>
+                <div class="key-ingame-mobile">Move right <div>Tap right</div> 
+                </div>
+            </div>
+
+            <div class="key-ingame-right d-none" id="key-ingame-right-mobile">
+                <div class="key-ingame-mobile">JUMP <div>Double tap Left or right</div> 
+                </div>
+                <div class="key-ingame-mobile">Throw <div> Double tap top right</div>
+                </div>
+            </div>
 
         </div>
-    </div>
-    </div>
     </div>
 
 

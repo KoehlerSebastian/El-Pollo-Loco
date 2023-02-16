@@ -7,7 +7,7 @@ width = 300
 
     constructor(){
         super().loadImage("./img/5_background/layers/4_clouds/1.png");
-        this.x = 0 + Math.floor(Math.random() * 500);
+        this.x = 250 + Math.floor(Math.random() * 1500);
 
         this.animate();
 

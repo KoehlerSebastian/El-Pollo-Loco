@@ -139,6 +139,11 @@ canvas {
     width: 24%;
     justify-content: center;
     gap: 6px;
+    color: orange;
+}
+
+.key-mobile{
+color: black
 }
 
 #jump-img{
@@ -153,6 +158,12 @@ rotate: 90deg;
 }
 
 #settings-frame{
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+
+#settings-frame-mobile{
     display: flex;
     justify-content: space-between;
     width: 95%;
@@ -230,6 +241,7 @@ rotate: 90deg;
 .key-ingame-middle{
     display: flex;
     gap: 6px;
+    align-items: end;
 }
 
 .key-ingame-right{
@@ -254,18 +266,40 @@ gap: 6px;
     color: white;
 }
 
+
+.key-ingame-mobile{
+    border: 2px solid orange;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    font-family: "Cinzel Decorative";
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    gap: 6px;
+    color: orange;
+}
+
+.key-ingame-mobile > div{
+    color: white;
+}
 #control-btn-ingame{
 display: flex;
+align-items: end;
 }
 
 
 #settings-frame-ingame{
 display: flex;
 width: 100%;
-justify-content: space-between;
+justify-content: center;
+gap: 6px;
 
 }
-@media screen and (max-width: 720px){
+@media screen and (max-width: 1024px){
     h1{
         display: none;
     }
@@ -279,4 +313,20 @@ justify-content: space-between;
         width: 100%;
     };
 }
+
+@media screen and (max-height: 860px){
+    h1{
+        display: none;
+    }
+
+    .start-container{
+        width: 100% !important;
+        height: 100vh;
+    }
+    canvas {
+        height: 100vh;
+        width: 100%;
+    };
+}
+
 

@@ -1,9 +1,13 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let closeIndikator = 0;
 const imageMusic = document.getElementById('music-img');
 const imageSourcesMusic = ['./css/icons/music.png', './css/icons/music_red.png'];
+const imageControls = ['./css/icons/controller.png', './css/icons/mobile.png', './css/icons/x.png'];
 let currentImageIndex = 0;
+let currentImageControlIndex = 0;
+let currentImageControlIndexIngame = 0;
 let lastTap = 0;
 const delayThrow = 500; // delay in milliseconds for double tap
 const delay = 300; // delay in milliseconds for double tap
@@ -27,20 +31,54 @@ function startGame() {
 
 
 function showControls() {
+    if(currentImageControlIndex == 0){
+    currentImageControlIndex = (currentImageControlIndex + 1) % imageControls.length;
     document.getElementById("control-btn").classList.toggle("d-none");
+    document.getElementById("control-img").src = imageControls[currentImageControlIndex]
+}else if(currentImageControlIndex == 1){
+    currentImageControlIndex = (currentImageControlIndex + 1) % imageControls.length;
+    document.getElementById("control-img").src = imageControls[currentImageControlIndex]
+    document.getElementById("settings-frame").classList.toggle("d-none");
+    document.getElementById("settings-frame-mobile").classList.toggle("d-none");
+
+}else if(currentImageControlIndex == 2){
+    currentImageControlIndex = (currentImageControlIndex + 1) % imageControls.length;
+    document.getElementById("control-img").src = imageControls[currentImageControlIndex];
+    document.getElementById("control-btn").classList.toggle("d-none");
+}
 }
 
 function showControlIngame(){
-    document.getElementById("key-ingame-right").classList.toggle("d-none");
-    document.getElementById("key-ingame-left").classList.toggle("d-none");
+    if(currentImageControlIndexIngame == 0){
+        currentImageControlIndexIngame = (currentImageControlIndexIngame + 1) % imageControls.length;
+        document.getElementById("key-ingame-right").classList.toggle("d-none");
+        document.getElementById("key-ingame-left").classList.toggle("d-none");
+        document.getElementById("control-img-ingame").src = imageControls[currentImageControlIndexIngame]
+        document.getElementById("control-btn").classList.toggle("d-none");
+    }else if (currentImageControlIndexIngame == 1){
+        currentImageControlIndexIngame = (currentImageControlIndexIngame + 1) % imageControls.length;
+        document.getElementById("control-img-ingame").src = imageControls[currentImageControlIndexIngame]
+        document.getElementById("key-ingame-right").classList.toggle("d-none");
+        document.getElementById("key-ingame-left").classList.toggle("d-none");
+        document.getElementById("key-ingame-right-mobile").classList.toggle("d-none");
+        document.getElementById("key-ingame-left-mobile").classList.toggle("d-none");
 }
+
+     else if (currentImageControlIndexIngame == 2){
+        currentImageControlIndexIngame = (currentImageControlIndexIngame + 1) % imageControls.length;
+        document.getElementById("control-img-ingame").src = imageControls[currentImageControlIndexIngame];
+        document.getElementById("key-ingame-right-mobile").classList.toggle("d-none");
+        document.getElementById("key-ingame-left-mobile").classList.toggle("d-none");
+     }
+    }
+
+
 
 
 function muteBgMusic() {
     currentImageIndex = (currentImageIndex + 1) % imageSourcesMusic.length;
     document.getElementById("music-img").src = imageSourcesMusic[currentImageIndex];
     muteSound();
-    console.log("PENNER")
 }
 
 function muteBgMusicIngame() {
@@ -48,9 +86,7 @@ function muteBgMusicIngame() {
     document.getElementById("music-img-ingame").src = imageSourcesMusic[currentImageIndex];
     muteSound();
     playGameSound();
-    console.log("PENNER")
 }
-
 
 
 window.addEventListener("keydown", (event) => {

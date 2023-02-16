@@ -148,12 +148,12 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     };
 
-    playAnimationHead(IMAGES) {
+    playAnimation2(IMAGES) {
         this.IMAGES = IMAGES;
-        let i = this.currentImageHead % IMAGES.length
+        let i = this.currentImage2 % IMAGES.length
         let path = IMAGES[i];
         this.img = this.imageCache2[path];
-        this.currentImagHead++;
+        this.currentImage2++;
     };
 
 

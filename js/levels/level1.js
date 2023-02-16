@@ -61,7 +61,9 @@ const smallChicken = [
     
 
 const clouds = [
-    new Cloud()
+    new Cloud(),
+    new Cloud(),
+    new Cloud(),
 ]
 
 
